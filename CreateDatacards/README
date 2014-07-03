@@ -1,5 +1,5 @@
 ### Combine version
-git clone https://github.com/meng-xiao/HiggsAnalysis-CombinedLimit HiggsAnalysis
+git clone https://github.com/meng-xiao/HiggsAnalysis-CombinedLimit HiggsAnalysis/CombinedLimit
 
 
 #########1D real fit
@@ -12,8 +12,13 @@ text2workspace.py -m 125.6 hzz4l_4l.txt -P HiggsAnalysis.CombinedLimit.SpinZeroS
 ###### 2D fai1 vs fai2, with phase
 text2workspace.py -m 125.6 hzz4l_4l.txt -P HiggsAnalysis.CombinedLimit.SpinZeroStructure:spinZeroHiggs --PO=muFloating,2D -o fixedMu.root -v 7
 
+### To run HWW + HZZ
+text2workspace.py -m 125.6 hww_zz.txt -P HiggsAnalysis.CombinedLimit.SpinZeroStructure:spinZeroHiggs --PO=muFloating,cPOI -o fixedMu3_-1to1.root -v 7
+
 ###### To run in general 
 combine -M MultiDimFit fixedMu.root --algo=grid --points 10000 -m 125.6 -n data -V  -v 3
 
 ###### To run real only in 2D 
 combine -M MultiDimFit fixedMu.root --algo=grid --points 40000 -m 125.6 -n data_-1to1 --setPhysicsModelParameters CMS_zz4l_fg4=0.0,CMS_zz4l_fg2=0.0,CMS_zz4l_fg2phi=0,CMS_zz4l_fg4phi=0 --freezeNuisances CMS_zz4l_fg4phi,CMS_zz4l_fg2phi --setPhysicsModelParameterRanges CMS_zz4l_fg4=-1,1:CMS_zz4l_fg2=-1,1 -V -v 3
+
+
