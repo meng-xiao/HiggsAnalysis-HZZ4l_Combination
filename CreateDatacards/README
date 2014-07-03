@@ -1,3 +1,7 @@
+### Combine version
+git clone https://github.com/meng-xiao/HiggsAnalysis-CombinedLimit HiggsAnalysis
+
+
 #########1D real fit
 text2workspace.py -m 125.6 hzz4l_4l.txt -P HiggsAnalysis.CombinedLimit.SpinZeroStructure:spinZeroHiggs --PO=muFloating -o fixedMu.root -v 7
 
