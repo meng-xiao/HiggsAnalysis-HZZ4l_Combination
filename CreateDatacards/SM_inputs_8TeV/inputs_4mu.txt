@@ -13,13 +13,15 @@ systematic lumiUnc 1.026
 sqrts 8
 
 ## Channels to include in cards ##
-channels ggH qqH WH ZH ttH qqZZ ggZZ zjets
+channels ggH qqZZ ggZZ zjets
 
 ## rates --- format = chan N lumi ##
 ## if lumi is blank, lumi for cards used ##
 rate qqZZ  92.072
-rate ggZZ  5.0272
+rate ggZZ  13.372352 
 rate zjets 3.09
+rate ggH  5.1963998
+eff qqH 0.4377563
 ## signal functions --- no spaces! ##
 usehighmassreweightedshapes
 signalShape n_CB TMath::Max((21.8412)+(-0.457725*@0)+(0.00405228*@0*@0)+(-1.69485e-05*@0*@0*@0)+(3.3184e-08*@0*@0*@0*@0)+(-2.44899e-11*@0*@0*@0*@0*@0),1)
@@ -144,6 +146,8 @@ systematic param CMS_zz4l_sigma_m_sig  0.2
 systematic param CMS_zz4l_n_sig 0.01
 systematic param CMS_zz4l_gamma_sig 0.05
 
+#systematic shape1 ggH_testsig 1
+
 ## 4mu systematics ##
 systematic muon_full 0.040 0.025 180
 systematic muon_trig 0.015
@@ -165,32 +169,43 @@ systematic QCDscale_VV True
 systematic BRhiggs_hzz4l True
 systematic CMS_eff True
 systematic CMS_hzz4l_Zjets True
-systematic CMS_zz4l_bkgMELA True
-systematic CMS_zz4l_sigMELA False
-systematic CMS_zz4l_mean True
-systematic CMS_zz4l_sigma True
-systematic CMS_zz4l_mean True
-systematic CMS_zz4l_sigma True
-systematic CMS_zz4l_n True
-systematic CMS_zz4l_gamma True
+systematic CMS_zz4l_bkgMELA False 
+systematic CMS_zz4l_sigMELA False 
+systematic CMS_zz4l_mean False 
+systematic CMS_zz4l_sigma False 
+systematic CMS_zz4l_mean False 
+systematic CMS_zz4l_sigma False 
+systematic CMS_zz4l_n False
+systematic CMS_zz4l_gamma False
+systematic Res True 
+systematic CMS_zz4l_zjet True 
+systematic Scale False 
 ### for hypothesis testing ###
-doHypTest False
+doHypTest False 
 #altHypLabel _ALT
 ## spin rates from jhuGen
-spinYield SM 5.60428
+spinYield SM 5.64452
 
 ## 0- from N_exp
-spinYield n0minus 4.51322
+spinYield n0minus 4.32014
+spinYield n0hplus 5.2006
+spinYield n1minus 2.47511
+spinYield n1plus 3.26828
+spinYield ngg2mplus 4.30548
+spinYield nqq2mplus 3.44576
+spinYield n2hplus 4.35706
+spinYield n2hminus 4.07212
+spinYield n2bplus 4.16735
 
 ## others from N_norm
-spinYield n0hplus 5.162
-spinYield n1minus 5.13405
-spinYield n1plus 5.43836
-spinYield ngg2mplus 5.05313
-spinYield nqq2mplus 4.9664
-spinYield n2hplus 5.06895
-spinYield n2hminus 5.21619
-spinYield n2bplus 5.02918
+#spinYield n0hplus 5.17032
+#spinYield n1minus 5.1422
+#spinYield n1plus 5.44705
+#spinYield ngg2mplus 5.06133
+#spinYield nqq2mplus 4.97431
+#spinYield n2hplus 5.07707
+#spinYield n2hminus 5.22452
+#spinYield n2bplus 5.03723
 
 
 
@@ -232,17 +247,25 @@ RelErrShape relerr_ggH_ld_frac (-0.476853)+(0.0181992*@0)+(-6.80532e-05*@0*@0)
 RelErrShape relerr_ggH_gs_mean (0.00796318)+(1.92456e-05*@0)+(-6.55354e-08*@0*@0)
 RelErrShape relerr_ggH_gs_sigma (0.00116677)+(9.97756e-06*@0)+(-2.44366e-08*@0*@0)
 ## spin rates from jhuGen
-spinYield SM 5.60428
+spinYield SM 5.64452
 
 ## 0- from N_exp
-spinYield n0minus 4.51322
+spinYield n0minus 4.32014
+spinYield n0hplus 5.2006
+spinYield n1minus 2.47511
+spinYield n1plus 3.26828
+spinYield ngg2mplus 4.30548
+spinYield nqq2mplus 3.44576
+spinYield n2hplus 4.35706
+spinYield n2hminus 4.07212
+spinYield n2bplus 4.16735
 
 ## others from N_norm
-spinYield n0hplus 5.162
-spinYield n1minus 5.13405
-spinYield n1plus 5.43836
-spinYield ngg2mplus 5.05313
-spinYield nqq2mplus 4.9664
-spinYield n2hplus 5.06895
-spinYield n2hminus 5.21619
-spinYield n2bplus 5.02918
+#spinYield n0hplus 5.17032
+#spinYield n1minus 5.1422
+#spinYield n1plus 5.44705
+#spinYield ngg2mplus 5.06133
+#spinYield nqq2mplus 4.97431
+#spinYield n2hplus 5.07707
+#spinYield n2hminus 5.22452
+#spinYield n2bplus 5.03723

@@ -205,14 +205,11 @@ class systematicsClass:
         theFile.write("pdf_gg lnN ")
 
         if not self.isForXSxBR and not self.model=="FF":
-            ttHSyst = 1 - (self.CSpdfErrPlus_tth-self.CSpdfErrMinus_tth)/2
-            if self.mH > 200 : ttHSyst = 1 + (self.CSpdfErrPlus_tth-self.CSpdfErrMinus_tth)/2
-
             systLine={'ggH':"{0:.4f} ".format(1. + (self.CSpdfErrPlus_gg-self.CSpdfErrMinus_gg)/2.)}
             systLine['qqH']  = "- "
             systLine['WH']   = "- " 
             systLine['ZH']   = "- "
-            systLine['ttH']  = "{0:.4f} ".format(ttHSyst)
+            systLine['ttH']  = "{0:.4f} ".format(1. + (self.CSpdfErrPlus_tth-self.CSpdfErrMinus_tth)/2)
             systLine['qqZZ'] = "- " 
             systLine['ggZZ'] = "{0:.4f} ".format(self.ggVV_pdfSys)
             systLine['zjets']= "- " 
@@ -317,6 +314,23 @@ class systematicsClass:
         
         self.Write_Systematics_Line(systLine,theFile,theInputs)                    
         
+    def Write_shape(self,theFile,theInputs):
+
+        #theFile.write("Res shape1 ")
+
+        systLine={'ggH':"1 "}
+        systLine['qqH']  = "- "
+        systLine['WH']   = "- " 
+        systLine['ZH']   = "- "
+        systLine['ttH']  = "- "
+        systLine['qqZZ'] = "- " 
+        systLine['ggZZ'] = "- "
+        systLine['zjets']= "- " 
+        systLine['ttbar']= "- "
+        systLine['zbb']  = "- "
+        
+        self.Write_Systematics_Line(systLine,theFile,theInputs)                    
+
     def Write_QCDscale_ggVV(self,theFile,theInputs):
 
         theFile.write("QCDscale_ggVV lnN ")
@@ -647,6 +661,8 @@ class systematicsClass:
         if theInputs['usePdf_qqbar']:
             self.Write_pdf_qqbar(theFile,theInputs)
 		
+        #if theInputs['useggH_testsig']:
+        #    self.Write_ggH_testsig(theFile,theInputs)
         if not self.isForXSxBR:
             
 	    if theInputs['usePdf_hzz4l_accept']:
@@ -663,6 +679,7 @@ class systematicsClass:
 	    
             if not self.model == "FF" and theInputs['useQCDscale_ttH']:
                 self.Write_QCDscale_ttH(theFile,theInputs)
+
 
 	    if theInputs['useTheoryUncXS_HighMH']:
                 self.Write_theoryUncXS_HighMH(theFile,theInputs)
@@ -734,6 +751,14 @@ class systematicsClass:
             if theInputs['useCMS_zz4l_gamma']:
                 theFile.write("interf_ggH param 0 1 [-1,1] \n".format(self.channel,self.sqrts,Gamma_BW_errPerCent))
                 #theFile.write("CMS_zz4l_gamma_sig_{0}_{1:.0f} param 0.0 {2} \n".format(self.channel,self.sqrts,Gamma_BW_errPerCent))
+            if theInputs['useRes']:
+                theFile.write("Res4mu shape1 ")
+                self.Write_shape(theFile,theInputs)
+            if theInputs['useScale']:
+                theFile.write("Scale4mu shape1 ")
+                self.Write_shape(theFile,theInputs)
+            if theInputs['useCMS_zz4l_zjet']:
+                theFile.write("CMS_zz4l_smd_zjets_bkg_1 param 0  1  [-3,3]\n")
             
         if( self.channel == self.ID_4e):
 
@@ -747,6 +772,14 @@ class systematicsClass:
             if theInputs['useCMS_zz4l_gamma']:
                 theFile.write("interf_ggH param 0 1 [-1,1] \n".format(self.channel,self.sqrts,Gamma_BW_errPerCent))
                 #theFile.write("CMS_zz4l_gamma_sig_{0}_{1:.0f} param 0.0 {2} \n".format(self.channel,self.sqrts,Gamma_BW_errPerCent))
+            if theInputs['useRes']:
+                theFile.write("Res4e shape1 ")
+                self.Write_shape(theFile,theInputs)
+            if theInputs['useScale']:
+                theFile.write("Scale4e shape1 ")
+                self.Write_shape(theFile,theInputs)
+            if theInputs['useCMS_zz4l_zjet']:
+                theFile.write("CMS_zz4l_smd_zjets_bkg_2 param 0  1  [-3,3]\n")
             
         if( self.channel == self.ID_2e2mu):
 
@@ -763,4 +796,12 @@ class systematicsClass:
             if theInputs['useCMS_zz4l_gamma']:
                 theFile.write("interf_ggH param 0 1 [-1,1] \n".format(self.channel,self.sqrts,Gamma_BW_errPerCent))
                 #theFile.write("CMS_zz4l_gamma_sig_{0}_{1:.0f} param 0.0 {2} \n".format(self.channel,self.sqrts,Gamma_BW_errPerCent))
+            if theInputs['useRes']:
+                theFile.write("Res2e2mu shape1 ")
+                self.Write_shape(theFile,theInputs)
+            if theInputs['useScale']:
+                theFile.write("Scale2e2mu shape1 ")
+                self.Write_shape(theFile,theInputs)
+            if theInputs['useCMS_zz4l_zjet']:
+                theFile.write("CMS_zz4l_smd_zjets_bkg_3 param 0  1  [-3,3]\n")
 

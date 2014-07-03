@@ -166,15 +166,15 @@ systematic BRhiggs_hzz4l True
 systematic CMS_eff True
 systematic CMS_hzz4l_Zjets True
 systematic CMS_zz4l_bkgMELA True
-systematic CMS_zz4l_sigMELA False
-systematic CMS_zz4l_mean True
-systematic CMS_zz4l_sigma True
-systematic CMS_zz4l_mean True
-systematic CMS_zz4l_sigma True
-systematic CMS_zz4l_n True
-systematic CMS_zz4l_gamma True
+systematic CMS_zz4l_sigMELA True
+systematic CMS_zz4l_mean False
+systematic CMS_zz4l_sigma False
+systematic CMS_zz4l_mean False
+systematic CMS_zz4l_sigma False
+systematic CMS_zz4l_n False
+systematic CMS_zz4l_gamma False
 ### for hypothesis testing ###
-doHypTest False
+doHypTest True
 #altHypLabel _ALT
 
 ### for VBF fraction ###
@@ -185,9 +185,6 @@ useCMS_zz4l_Pt_sys True
 systematic param QCD_scale_ggH_2j_sys 0.3
 systematic param QCD_scale_qqH_2j_sys 0.1
 
-
-## jet tagged/untagged ratio
-jetYieldRatio 0.0253924+(0.000682015*@0)+(-3.24118e-07*@0*@0)+(6.44058e-11*@0*@0*@0)
 
 ## signal efficiency ratios ##
 signalEff tagged_ggH_ratio 0.039716+(0.00048913*@0)+(-2.27631e-07*@0*@0)

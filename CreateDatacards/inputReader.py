@@ -216,6 +216,9 @@ class inputReader:
         self.useCMS_zz4l_sigma = False
         self.useCMS_zz4l_n = False
         self.useCMS_zz4l_gamma = False
+        self.useRes= False
+        self.useScale= False
+        self.useCMS_zz4l_zjet= False
         self.doHypTest = False
         self.altHypLabel = ""
 
@@ -631,6 +634,12 @@ class inputReader:
                     self.useCMS_zz4l_n = self.parseBoolString(f[2])
                 if f[1].lower().startswith("cms_zz4l_gamma"):
                     self.useCMS_zz4l_gamma = self.parseBoolString(f[2])
+                if f[1].lower().startswith("res"):
+                    self.useRes= self.parseBoolString(f[2])
+                if f[1].lower().startswith("scale"):
+                    self.useScale= self.parseBoolString(f[2])
+                if f[1].lower().startswith("cms_zz4l_zjet"):
+                    self.useCMS_zz4l_zjet= self.parseBoolString(f[2])
                     
                 
                     
@@ -1034,6 +1043,9 @@ class inputReader:
         dict['useCMS_zz4l_sigma'] = self.useCMS_zz4l_sigma 
         dict['useCMS_zz4l_n'] = self.useCMS_zz4l_n
         dict['useCMS_zz4l_gamma'] = self.useCMS_zz4l_gamma
+        dict['useRes'] = self.useRes
+        dict['useScale'] = self.useScale
+        dict['useCMS_zz4l_zjet'] = self.useCMS_zz4l_zjet
 
         dict['CMS_zz4l_mean_m_sig'] = float(self.CMS_zz4l_mean_m_sig) 
         dict['CMS_zz4l_sigma_m_sig'] = float(self.CMS_zz4l_sigma_m_sig) 
