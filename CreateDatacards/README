@@ -1,24 +1,28 @@
 ### Combine version
 git clone https://github.com/meng-xiao/HiggsAnalysis-CombinedLimit HiggsAnalysis/CombinedLimit
 
-
-#########1D real fit
-text2workspace.py -m 125.6 hzz4l_4l.txt -P HiggsAnalysis.CombinedLimit.SpinZeroStructure:spinZeroHiggs --PO=muFloating -o fixedMu.root -v 7
-
-####### 2D fai vs phi_ai fit
-text2workspace.py -m 125.6 hzz4l_4l.txt -P HiggsAnalysis.CombinedLimit.SpinZeroStructure:spinZeroHiggs --PO=muFloating,phiFloating -o fixedMu.root -v 7
+###########Combine cards
+combineCards.py hwwof_0j_8TeV.txt hwwof_1j_8TeV.txt hwwof_0j_7TeV.txt hwwof_1j_7TeV.txt -S > hwwof_inter_ww.txt
 
 
-###### 2D fai1 vs fai2, with phase
-text2workspace.py -m 125.6 hzz4l_4l.txt -P HiggsAnalysis.CombinedLimit.SpinZeroStructure:spinZeroHiggs --PO=muFloating,2D -o fixedMu.root -v 7
+######### Generate workspace
+	######  1D fai, phase real
+		text2workspace.py -m 125.6 hzz4l_4l.txt -P HiggsAnalysis.CombinedLimit.SpinZeroStructure:spinZeroHiggs --PO=muFloating -o fixedMu.root -v 7
 
-### To run HWW + HZZ
-text2workspace.py -m 125.6 hww_zz.txt -P HiggsAnalysis.CombinedLimit.SpinZeroStructure:spinZeroHiggs --PO=muFloating,cPOI -o fixedMu3_-1to1.root -v 7
+	####### 2D fai vs phi_ai 
+		text2workspace.py -m 125.6 hzz4l_4l.txt -P HiggsAnalysis.CombinedLimit.SpinZeroStructure:spinZeroHiggs --PO=muFloating,phiFloating -o fixedMu.root -v 7
 
-###### To run in general 
-combine -M MultiDimFit fixedMu.root --algo=grid --points 10000 -m 125.6 -n data -V  -v 3
+	###### 2D fai1 vs fai2, including phase
+		text2workspace.py -m 125.6 hzz4l_4l.txt -P HiggsAnalysis.CombinedLimit.SpinZeroStructure:spinZeroHiggs --PO=muFloating,2D -o fixedMu.root -v 7
 
-###### To run real only in 2D 
-combine -M MultiDimFit fixedMu.root --algo=grid --points 40000 -m 125.6 -n data_-1to1 --setPhysicsModelParameters CMS_zz4l_fg4=0.0,CMS_zz4l_fg2=0.0,CMS_zz4l_fg2phi=0,CMS_zz4l_fg4phi=0 --freezeNuisances CMS_zz4l_fg4phi,CMS_zz4l_fg2phi --setPhysicsModelParameterRanges CMS_zz4l_fg4=-1,1:CMS_zz4l_fg2=-1,1 -V -v 3
+	###### 2D fai vs R_ai, for HWW+HZZ 
+		text2workspace.py -m 125.6 hww_zz.txt -P HiggsAnalysis.CombinedLimit.SpinZeroStructure:spinZeroHiggs --PO=muFloating,cPOI -o fixedMu3_-1to1.root -v 7
 
+###### To run final scan
+	###### expected
+	combine -M MultiDimFit floatMu_inter.root --algo=grid --points 100 -m 125.6 -n 1D_exp_inter -t -1 --expectSignal=1 --saveToys -v 3
+	###### data
+	combine -M MultiDimFit floatMu_inter.root --algo=grid --points 100 -m 125.6 -n data -v 3
+	###### To run real only in 2D 
+	combine -M MultiDimFit fixedMu.root --algo=grid --points 40000 -m 125.6 -n data_-1to1 --setPhysicsModelParameters CMS_zz4l_fg4=0.0,CMS_zz4l_fg2=0.0,CMS_zz4l_fg2phi=0,CMS_zz4l_fg4phi=0 --freezeNuisances CMS_zz4l_fg4phi,CMS_zz4l_fg2phi --setPhysicsModelParameterRanges CMS_zz4l_fg4=-1,1:CMS_zz4l_fg2=-1,1 -V -v 3
 
